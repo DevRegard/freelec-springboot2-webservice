@@ -1,0 +1,23 @@
+package com.jojoldu.book.springboot.web;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/*
+@RestController
+ -JSON 데이터를 반환하는 컨트롤러
+ -@ResponseBody 를 각 메서드 마다 선언했던 것을 생략하는 역할
+ */
+@RestController
+public class HelloController {
+    /*
+    @GetMapping
+     - HTTP Method - Get 요청을 받을 수 있는 API
+     - @RequestMapping(method = RequestMethod.GET) 역할
+     - /hello 요청 -> 문자열 hello 반환
+     */
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
+    }
+}
