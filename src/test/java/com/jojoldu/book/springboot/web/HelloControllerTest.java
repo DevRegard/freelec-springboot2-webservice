@@ -27,3 +27,18 @@ public class HelloControllerTest {
                 .andExpect(content().string(hello));
     }
 }
+/*
+@RunWith(SpringRunner.class)
+
+@WebMvcTest
+
+@Autowired
+
+@private MockMvc mvc
+
+mvc.perform(get("/주소값");
+
+.andExpect(status().isOk())
+
+.andExpect(content().string(hello))
+*/
