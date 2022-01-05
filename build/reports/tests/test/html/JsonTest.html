@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <p id="pid"> </p>
+
+    <table border="1">
+        <thead>
+            <th>제목</th>
+            <th>저자</th>
+            <th>가격</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script type="text/javascript">
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                jsonFunction(xmlhttp.responseText);
+            }
+        }
+
+        xmlhttp.open("GET", "bookJSON.json", true);
+        xmlhttp.send();
+
+        function jsonFunction(resp) {
+            var arr = JSON.parse(resp);
+            var txt = "";
+            for (i = 0; i < arr.length; i++) {
+                
+                //JSON 데이터 속성별 파싱
+                var title = arr[i].title;
+                var author = arr[i].author;
+                var price = arr[i].price;
+
+                //
+                var thTitle = document.createTextNode(title);
+                var tdAuthor = document.createTextNode(author);
+                var tdPrice = document.createTextNode(price);
+                
+                //
+                var tr = document.createElement("tr");
+                var th = document.createElement("th");
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+
+                th.appendChild(thTitle);
+                td1.appendChild(tdAuthor);
+                td2.appendChild(tdPrice);
+
+                tr.appendChild(th);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+
+                var tbody = document.getElementsByTagName("tbody")[0];
+
+                tbody.appendChild(tr);
+
+            }
+            document.getElementById("pid").innerHTML = txt;
+        };
+    </script>
+</body>
+
+</html>
