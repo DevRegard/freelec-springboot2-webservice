@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <p id="pid"> </p>
+
+    <table border="1">
+        <thead>
+            <th>생년월일</th>
+            <th>classify_result</th>
+            <th>classify_sample</th>
+            <!--<th>classify_test</th>
+            <th>clinical_comment</th>
+            <th>created_at</th>
+            <th>doctor_cd</th>
+            <th>doctor_ko_name</th>
+            <th>doctor_name</th>
+            <th>entry_nation</th>
+
+            <th>form_cd</th>
+            <th>gender</th>
+            <th>igm_sample_reference</th>
+            <th>igm_test_detection</th>
+            <th>igm_test_name</th>
+            <th>igm_test_remark</th>
+            <th>igm_test_result</th>
+            <th>issue_date</th>
+            <th>ko_name</th>
+            <th>nation</th>
+
+            <th>passport_cd</th>
+            <th>passport_name</th>
+            <th>patient_cd</th>
+            <th>phone_no</th>
+            <th>result_date</th>
+            <th>sample_reference</th>
+            <th>sampling_date</th>
+            <th>serial</th>
+            <th>test_detection</th>
+            <th>test_name</th>
+
+            <th>test_remark</th>
+            <th>test_result</th>-->
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script type="text/javascript">
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                jsonFunction(xmlhttp.responseText);
+            }
+        }
+
+        xmlhttp.open("GET", "members.json", true);
+        xmlhttp.send();
+
+        function jsonFunction(resp) {
+            var arr = JSON.parse(resp);
+            var txt = "";
+            for (i = 0; i < arr.length; i++) {
+                
+                //JSON 데이터 속성별 파싱 [리팩토링 전 단계]
+                //JSON 속성 변수
+                var birth = arr[i].birth;
+                var classify_result = arr[i].classify_result;
+                var classify_sample = arr[i].classify_sample;
+                var classify_test = arr[i].classify_test;
+                var clinical_comment = arr[i].clinical_comment;
+                var created_at = arr[i].created_at;
+                var doctor_cd = arr[i].doctor_cd;
+                var doctor_ko_name = arr[i].doctor_ko_name;
+                var doctor_name = arr[i].doctor_name;
+                var entry_nation = arr[i].entry_nation;
+
+                var form_cd = arr[i].form_cd;
+                var gender = arr[i].gender;
+                var igm_sample_reference = arr[i].igm_sample_reference;
+                var igm_test_detection = arr[i].igm_test_detection;
+                var igm_test_name = arr[i].igm_test_name;
+                var igm_test_remark = arr[i].igm_test_remark;
+                var igm_test_result = arr[i].igm_test_result;
+                var issue_date = arr[i].issue_date;
+                var ko_name = arr[i].ko_name;
+                var clnationassify_sample = arr[i].nation;
+
+                var passport_cd = arr[i].passport_cd;
+                var passport_name = arr[i].passport_name;
+                var patient_cd = arr[i].patient_cd;
+                var phone_no = arr[i].phone_no;
+                var result_date = arr[i].result_date;
+                var sample_reference = arr[i].sample_reference;
+                var sampling_date = arr[i].sampling_date;
+                var serial = arr[i].serial;
+                var test_detection = arr[i].test_detection;
+                var test_name = arr[i].test_name;
+
+                var test_remark = arr[i].test_remark;
+                var test_result = arr[i].test_result;
+
+                //
+                var tdBirth = document.createTextNode(birth);
+                var tdClassify_result = document.createTextNode(classify_result);
+                var tdPrice = document.createTextNode(classify_sample);
+                
+                // (중복코드)
+                var tr = document.createElement("tr");
+                // var th = document.createElement("th");
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+                var td3 = document.createElement("td");
+                
+                //
+                // th.appendChild(thTitle);
+                td1.appendChild(tdBirth);
+                td2.appendChild(tdClassify_result);
+                td3.appendChild(tdPrice);
+
+                //
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+
+
+                //***
+                //상기 내용 tbody 붙히기
+                var tbody = document.getElementsByTagName("tbody")[0];
+
+                tbody.appendChild(tr);
+
+            }
+            document.getElementById("pid").innerHTML = txt;
+        };
+    </script>
+</body>
+
+</html>
