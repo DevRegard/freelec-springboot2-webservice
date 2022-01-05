@@ -7,71 +7,71 @@
 </head>
 
 <body>
-    <p id="pid"> </p>
+<p id="pid"> </p>
 
-    <table border="1">
-        <thead>
-            <th>생년월일</th>
-            <th>classify_result</th>
-            <th>classify_sample</th>
-            <!--<th>classify_test</th>
-            <th>clinical_comment</th>
-            <th>created_at</th>
-            <th>doctor_cd</th>
-            <th>doctor_ko_name</th>
-            <th>doctor_name</th>
-            <th>entry_nation</th>
+<table border="1">
+    <thead>
+    <th>생년월일</th>
+    <th>classify_result</th>
+    <th>classify_sample</th>
+    <th>classify_test</th>
+    <th>clinical_comment</th>
+    <th>created_at</th>
+    <th>doctor_cd</th>
+    <th>doctor_ko_name</th>
+    <th>doctor_name</th>
+    <th>entry_nation</th>
 
-            <th>form_cd</th>
-            <th>gender</th>
-            <th>igm_sample_reference</th>
-            <th>igm_test_detection</th>
-            <th>igm_test_name</th>
-            <th>igm_test_remark</th>
-            <th>igm_test_result</th>
-            <th>issue_date</th>
-            <th>ko_name</th>
-            <th>nation</th>
+    <th>form_cd</th>
+    <th>gender</th>
+    <th>igm_sample_reference</th>
+    <th>igm_test_detection</th>
+    <th>igm_test_name</th>
+    <th>igm_test_remark</th>
+    <th>igm_test_result</th>
+    <th>issue_date</th>
+    <th>ko_name</th>
+    <th>nation</th>
 
-            <th>passport_cd</th>
-            <th>passport_name</th>
-            <th>patient_cd</th>
-            <th>phone_no</th>
-            <th>result_date</th>
-            <th>sample_reference</th>
-            <th>sampling_date</th>
-            <th>serial</th>
-            <th>test_detection</th>
-            <th>test_name</th>
+    <th>passport_cd</th>
+    <th>passport_name</th>
+    <th>patient_cd</th>
+    <th>phone_no</th>
+    <th>result_date</th>
+    <th>sample_reference</th>
+    <th>sampling_date</th>
+    <th>serial</th>
+    <th>test_detection</th>
+    <th>test_name</th>
 
-            <th>test_remark</th>
-            <th>test_result</th>-->
-        </thead>
-        <tbody>
+    <th>test_remark</th>
+    <th>test_result</th>
+    </thead>
+    <tbody>
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
         var xmlhttp = new XMLHttpRequest();
 
         xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { //COMPLETED(4) , OK(200)
                 jsonFunction(xmlhttp.responseText);
             }
         }
 
-        xmlhttp.open("GET", "members.json", true);
+        xmlhttp.open("GET", "membersTest.json", true);
         xmlhttp.send();
 
         function jsonFunction(resp) {
             var arr = JSON.parse(resp);
             var txt = "";
             for (i = 0; i < arr.length; i++) {
-                
-                //JSON 데이터 속성별 파싱 [리팩토링 전 단계]
-                //JSON 속성 변수
+
+                //JSON 데이터 속성별 파싱 [리팩토링 전]
+                //JSON 속성값 변수
                 var birth = arr[i].birth;
                 var classify_result = arr[i].classify_result;
                 var classify_sample = arr[i].classify_sample;
@@ -92,7 +92,7 @@
                 var igm_test_result = arr[i].igm_test_result;
                 var issue_date = arr[i].issue_date;
                 var ko_name = arr[i].ko_name;
-                var clnationassify_sample = arr[i].nation;
+                var clnationassify_sample = arr[i].clnationassify_sample;
 
                 var passport_cd = arr[i].passport_cd;
                 var passport_name = arr[i].passport_name;
@@ -108,32 +108,163 @@
                 var test_remark = arr[i].test_remark;
                 var test_result = arr[i].test_result;
 
-                //
-                var tdBirth = document.createTextNode(birth);
-                var tdClassify_result = document.createTextNode(classify_result);
-                var tdPrice = document.createTextNode(classify_sample);
-                
-                // (중복코드)
+
+                //td변수 생성 [열]
+                var td_Birth = document.createTextNode(birth);
+                var td_Classify_result = document.createTextNode(classify_result);
+                var td_Classify_sample = document.createTextNode(classify_sample);
+                var td_Classify_test = document.createTextNode(classify_test);
+                var td_Clinical_comment = document.createTextNode(clinical_comment);
+                var td_Created_at = document.createTextNode(created_at);
+                var td_Doctor_cd = document.createTextNode(doctor_cd);
+                var td_Doctor_ko_name = document.createTextNode(doctor_ko_name);
+                var td_Doctor_name = document.createTextNode(doctor_name);
+                var td_Entry_nation = document.createTextNode(entry_nation);
+
+                var td_Form_cd = document.createTextNode(form_cd);
+                var td_Gender = document.createTextNode(gender);
+                var td_Igm_sample_reference = document.createTextNode(igm_sample_reference);
+                var td_Igm_test_detection = document.createTextNode(igm_test_detection);
+                var td_Igm_test_name = document.createTextNode(igm_test_name);
+                var td_Igm_test_remark = document.createTextNode(igm_test_remark);
+                var td_Igm_test_result = document.createTextNode(igm_test_result);
+                var td_Issue_date = document.createTextNode(issue_date);
+                var td_Ko_name = document.createTextNode(ko_name);
+                var td_Nation = document.createTextNode(nation);
+
+                var td_Passport_cd = document.createTextNode(passport_cd);
+                var td_Passport_name = document.createTextNode(passport_name);
+                var td_Patient_cd = document.createTextNode(patient_cd);
+                var td_Phone_no = document.createTextNode(phone_no);
+                var td_Result_date = document.createTextNode(result_date);
+                var td_Sample_reference = document.createTextNode(sample_reference);
+                var td_Sampling_date = document.createTextNode(sampling_date);
+                var td_Serial = document.createTextNode(serial);
+                var td_Test_detection = document.createTextNode(test_detection);
+                var td_Test_name = document.createTextNode(test_name);
+
+                var td_Test_remark = document.createTextNode(test_remark);
+                var td_Test_result = document.createTextNode(test_result);
+
+
+                //테이블 tr,td 부여
                 var tr = document.createElement("tr");
                 // var th = document.createElement("th");
                 var td1 = document.createElement("td");
                 var td2 = document.createElement("td");
                 var td3 = document.createElement("td");
-                
-                //
-                // th.appendChild(thTitle);
-                td1.appendChild(tdBirth);
-                td2.appendChild(tdClassify_result);
-                td3.appendChild(tdPrice);
+                var td4 = document.createElement("td");
+                var td5 = document.createElement("td");
+                var td6 = document.createElement("td");
+                var td7 = document.createElement("td");
+                var td8 = document.createElement("td");
+                var td9 = document.createElement("td");
+                var td10 = document.createElement("td");
 
-                //
+                var td11 = document.createElement("td");
+                var td12 = document.createElement("td");
+                var td13 = document.createElement("td");
+                var td14 = document.createElement("td");
+                var td15 = document.createElement("td");
+                var td16 = document.createElement("td");
+                var td17 = document.createElement("td");
+                var td18 = document.createElement("td");
+                var td19 = document.createElement("td");
+                var td20 = document.createElement("td");
+
+                var td21 = document.createElement("td");
+                var td22 = document.createElement("td");
+                var td23 = document.createElement("td");
+                var td24 = document.createElement("td");
+                var td25 = document.createElement("td");
+                var td26 = document.createElement("td");
+                var td27 = document.createElement("td");
+                var td28 = document.createElement("td");
+                var td29 = document.createElement("td");
+                var td30 = document.createElement("td");
+
+                var td31 = document.createElement("td");
+                var td32 = document.createElement("td");
+
+
+                //td위치 마다 JSON 값 붙히기
+                // th.appendChild(thTitle);
+                td1.appendChild(td_Birth);
+                td2.appendChild(td_Classify_result);
+                td3.appendChild(td_Classify_sample);
+                td4.appendChild(td_Classify_test);
+                td5.appendChild(td_Clinical_comment);
+                td6.appendChild(td_Created_at);
+                td7.appendChild(td_Doctor_cd);
+                td8.appendChild(td_Doctor_ko_name);
+                td9.appendChild(td_Doctor_name);
+                td10.appendChild(td_Entry_nation);
+
+                td11.appendChild(td_Form_cd);
+                td12.appendChild(td_Gender);
+                td13.appendChild(td_Igm_sample_reference);
+                td14.appendChild(td_Igm_test_detection);
+                td15.appendChild(td_Igm_test_name);
+                td16.appendChild(td_Igm_test_remark);
+                td17.appendChild(td_Igm_test_result);
+                td18.appendChild(td_Issue_date);
+                td19.appendChild(td_Ko_name);
+                td20.appendChild(td_Nation);
+
+                td21.appendChild(td_Passport_cd);
+                td22.appendChild(td_Passport_name);
+                td23.appendChild(td_Patient_cd);
+                td24.appendChild(td_Phone_no);
+                td25.appendChild(td_Result_date);
+                td26.appendChild(td_Sample_reference);
+                td27.appendChild(td_Sampling_date);
+                td28.appendChild(td_Serial);
+                td29.appendChild(td_Test_detection);
+                td30.appendChild(td_Test_name);
+
+                td31.appendChild(td_Test_remark);
+                td32.appendChild(td_Test_result);
+
+
+                // 행(tr)마다 열(td) 내용 붙히기
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+                tr.appendChild(td6);
+                tr.appendChild(td7);
+                tr.appendChild(td8);
+                tr.appendChild(td9);
+                tr.appendChild(td10);
 
+                tr.appendChild(td11);
+                tr.appendChild(td12);
+                tr.appendChild(td13);
+                tr.appendChild(td14);
+                tr.appendChild(td15);
+                tr.appendChild(td16);
+                tr.appendChild(td17);
+                tr.appendChild(td18);
+                tr.appendChild(td19);
+                tr.appendChild(td20);
 
-                //***
-                //상기 내용 tbody 붙히기
+                tr.appendChild(td21);
+                tr.appendChild(td22);
+                tr.appendChild(td23);
+                tr.appendChild(td24);
+                tr.appendChild(td25);
+                tr.appendChild(td26);
+                tr.appendChild(td27);
+                tr.appendChild(td28);
+                tr.appendChild(td29);
+                tr.appendChild(td30);
+
+                tr.appendChild(td31);
+                tr.appendChild(td32);
+
+                //***********************
+                //PCR_DB 내용 tbody 붙히기
                 var tbody = document.getElementsByTagName("tbody")[0];
 
                 tbody.appendChild(tr);
