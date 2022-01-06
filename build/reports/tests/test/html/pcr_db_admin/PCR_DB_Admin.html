@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PCR_DB 관리자페이지</title>
+
+    <!--<style>
+        table {
+          width: 100%;
+          border: 1px solid #444444;
+          border-collapse: collapse;
+        }
+        th, td {
+          border: 1px solid #444444;
+          padding: 10px;
+        }
+    </style> -->
+
+    <!--<style>
+        table {
+        width: 100%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+        }
+        th, td {
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        padding: 10px;
+        }
+        th:first-child, td:first-child {
+        border-left: none;
+        }
+    </style> -->
+
+    <style>
+        table.type_css03 {
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+
+        }
+        table.type_css03 thead th {
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        color: #369;
+        border-bottom: 3px solid #036;
+        }
+        table.type_css03 tbody th {
+        width: 150px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+        background: #f3f6f7;
+        }
+        table.type_css03 td {
+        width: 350px;
+        padding: 10px;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+        }
+
+        th, td {
+        /* border-bottom: 1px solid #444444; */
+        border-left: 1px solid #444444;
+        padding: 10px;
+        }
+
+        th:first-child, td:first-child {
+        border-left: none;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="pid"> </p>
+    <table class="type_css03">
+        <thead>
+            <th>생년월일</th>
+            <th>classify_result</th>
+            <th>classify_sample</th>
+            <th>classify_test</th>
+            <th>clinical_comment</th>
+            <th>created_at</th>
+            <th>doctor_cd</th>
+            <th>doctor_ko_name</th>
+            <th>doctor_name</th>
+            <th>entry_nation</th>
+
+            <th>form_cd</th>
+            <th>gender</th>
+            <th>igm_sample_reference</th>
+            <th>igm_test_detection</th>
+            <th>igm_test_name</th>
+            <th>igm_test_remark</th>
+            <th>igm_test_result</th>
+            <th>issue_date</th>
+            <th>ko_name</th>
+            <th>nation</th>
+
+            <th>passport_cd</th>
+            <th>passport_name</th>
+            <th>patient_cd</th>
+            <th>phone_no</th>
+            <th>result_date</th>
+            <th>sample_reference</th>
+            <th>sampling_date</th>
+            <th>serial</th>
+            <th>test_detection</th>
+            <th>test_name</th>
+
+            <th>test_remark</th>
+            <th>test_result</th>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+
+
+    <script type="text/javascript">
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { 
+                /* COMPLETED(4:완전한 데이터) , OK(200:요청성공)
+                참조 : https://qqqqqq.tistory.com/entry/XMLHttpRequest-%EA%B0%9D%EC%B2%B4%EC%9D%98-%EC%83%81%ED%83%9C-readystate
+                */
+                jsonFunction(xmlhttp.responseText);
+            }
+        }
+
+        /*JSON 데이터 조정 필요
+        membersTest.json 과 같은 데이터 조정 가능성 확인 필요 */
+        // const jsonData = "members.json";
+        // xmlhttp.open("GET", jsonData, true);
+
+        //임시 테스트 데이터 (memberTest.json)
+        xmlhttp.open("GET", "membersTest.json", true); 
+        xmlhttp.send();
+
+        //JSON 데이터 파싱 [리팩토링]
+        function jsonFunction(resp) {
+            var arr = JSON.parse(resp);
+            var txt = "";
+            for (i = 0; i < arr.length; i++) {
+                
+                //JSON 속성값 변수
+                var birth = arr[i].birth;
+                var classify_result = arr[i].classify_result;
+                var classify_sample = arr[i].classify_sample;
+                var classify_test = arr[i].classify_test;
+                var clinical_comment = arr[i].clinical_comment;
+                var created_at = arr[i].created_at;
+                var doctor_cd = arr[i].doctor_cd;
+                var doctor_ko_name = arr[i].doctor_ko_name;
+                var doctor_name = arr[i].doctor_name;
+                var entry_nation = arr[i].entry_nation;
+
+                var form_cd = arr[i].form_cd;
+                var gender = arr[i].gender;
+                var igm_sample_reference = arr[i].igm_sample_reference;
+                var igm_test_detection = arr[i].igm_test_detection;
+                var igm_test_name = arr[i].igm_test_name;
+                var igm_test_remark = arr[i].igm_test_remark;
+                var igm_test_result = arr[i].igm_test_result;
+                var issue_date = arr[i].issue_date;
+                var ko_name = arr[i].ko_name;
+                var nation = arr[i].nation;
+
+                var passport_cd = arr[i].passport_cd;
+                var passport_name = arr[i].passport_name;
+                var patient_cd = arr[i].patient_cd;
+                var phone_no = arr[i].phone_no;
+                var result_date = arr[i].result_date;
+                var sample_reference = arr[i].sample_reference;
+                var sampling_date = arr[i].sampling_date;
+                var serial = arr[i].serial;
+                var test_detection = arr[i].test_detection;
+                var test_name = arr[i].test_name;
+
+                var test_remark = arr[i].test_remark;
+                var test_result = arr[i].test_result;
+
+                
+                //td변수 생성 [열]
+                var td_Birth = document.createTextNode(birth);
+                var td_Classify_result = document.createTextNode(classify_result);
+                var td_Classify_sample = document.createTextNode(classify_sample);
+                var td_Classify_test = document.createTextNode(classify_test);
+                var td_Clinical_comment = document.createTextNode(clinical_comment);
+                var td_Created_at = document.createTextNode(created_at);
+                var td_Doctor_cd = document.createTextNode(doctor_cd);
+                var td_Doctor_ko_name = document.createTextNode(doctor_ko_name);
+                var td_Doctor_name = document.createTextNode(doctor_name);
+                var td_Entry_nation = document.createTextNode(entry_nation);
+
+                var td_Form_cd = document.createTextNode(form_cd);
+                var td_Gender = document.createTextNode(gender);
+                var td_Igm_sample_reference = document.createTextNode(igm_sample_reference);
+                var td_Igm_test_detection = document.createTextNode(igm_test_detection);
+                var td_Igm_test_name = document.createTextNode(igm_test_name);
+                var td_Igm_test_remark = document.createTextNode(igm_test_remark);
+                var td_Igm_test_result = document.createTextNode(igm_test_result);
+                var td_Issue_date = document.createTextNode(issue_date);
+                var td_Ko_name = document.createTextNode(ko_name);
+                var td_Nation = document.createTextNode(nation);
+
+                var td_Passport_cd = document.createTextNode(passport_cd);
+                var td_Passport_name = document.createTextNode(passport_name);
+                var td_Patient_cd = document.createTextNode(patient_cd);
+                var td_Phone_no = document.createTextNode(phone_no);
+                var td_Result_date = document.createTextNode(result_date);
+                var td_Sample_reference = document.createTextNode(sample_reference);
+                var td_Sampling_date = document.createTextNode(sampling_date);
+                var td_Serial = document.createTextNode(serial);
+                var td_Test_detection = document.createTextNode(test_detection);
+                var td_Test_name = document.createTextNode(test_name);
+
+                var td_Test_remark = document.createTextNode(test_remark);
+                var td_Test_result = document.createTextNode(test_result);
+
+                
+                //테이블 tr,td 부여
+                var tr = document.createElement("tr");
+
+                var td = Array(32);
+                for (index = 0; index < td.length; index++) {
+                    td[index] = document.createElement("td");
+                }
+        
+                
+                //td위치 마다 JSON 값 붙히기
+                td[0].appendChild(td_Birth);
+                td[1].appendChild(td_Classify_result);
+                td[2].appendChild(td_Classify_sample);
+                td[3].appendChild(td_Classify_test);
+                td[4].appendChild(td_Clinical_comment);
+                td[5].appendChild(td_Created_at);
+                td[6].appendChild(td_Doctor_cd);
+                td[7].appendChild(td_Doctor_ko_name);
+                td[8].appendChild(td_Doctor_name);
+                td[9].appendChild(td_Entry_nation);
+
+                td[10].appendChild(td_Form_cd);
+                td[11].appendChild(td_Gender);
+                td[12].appendChild(td_Igm_sample_reference);
+                td[13].appendChild(td_Igm_test_detection);
+                td[14].appendChild(td_Igm_test_name);
+                td[15].appendChild(td_Igm_test_remark);
+                td[16].appendChild(td_Igm_test_result);
+                td[17].appendChild(td_Issue_date);
+                td[18].appendChild(td_Ko_name);
+                td[19].appendChild(td_Nation);
+
+                td[20].appendChild(td_Passport_cd);
+                td[21].appendChild(td_Passport_name);
+                td[22].appendChild(td_Patient_cd);
+                td[23].appendChild(td_Phone_no);
+                td[24].appendChild(td_Result_date);
+                td[25].appendChild(td_Sample_reference);
+                td[26].appendChild(td_Sampling_date);
+                td[27].appendChild(td_Serial);
+                td[28].appendChild(td_Test_detection);
+                td[29].appendChild(td_Test_name);
+
+                td[30].appendChild(td_Test_remark);
+                td[31].appendChild(td_Test_result);
+    
+
+                // 행(tr)마다 열(td) 내용 붙히기
+                for (index = 0; index < td.length; index++) {
+                    tr.appendChild(td[index]);
+                }
+
+
+                //PCR_DB 내용 tbody 붙히기
+                var tbody = document.getElementsByTagName("tbody")[0];
+
+                tbody.appendChild(tr);
+
+            }
+            document.getElementById("pid").innerHTML = txt;
+        };
+    </script>
+</body>
+
+</html>
