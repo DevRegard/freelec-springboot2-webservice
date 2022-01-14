@@ -29,5 +29,7 @@ public class HelloResponseDtoTest {
          - assert 동등 비교 메서드
          - assertThat() = isEqualTo() -> 성공
          */
+
+        // 27인치가 이렇게 크다고! (22-01-14)
     }
 }
