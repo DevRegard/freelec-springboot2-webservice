@@ -31,5 +31,7 @@ public class HelloResponseDtoTest {
          */
 
         // 27인치가 이렇게 크다고! (22-01-14)
+        // QHD 미쳤다고! 역시 삼성이라구!
+        // 눈이 편안하다고!
     }
 }
