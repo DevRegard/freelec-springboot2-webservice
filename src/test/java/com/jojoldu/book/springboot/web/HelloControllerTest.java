@@ -10,6 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = HelloController.class)
@@ -26,8 +28,22 @@ public class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(hello));
     }
+
+    @Test
+    public void helloDtoIsReturn() throws Exception{
+        String name = "hello";
+        int amount = 1000;
+
+        mvc.perform(
+                get("/hello/dto")
+                        .param("name", name)
+                        .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
+    }
 }
-/*
+/* p.61~63 <hello 테스트(기본)>
 @RunWith(SpringRunner.class)
   -스프링 부트 테스트 ~ JUnit 연결자
   -테스트 진행) JUnit 내장된 실행자 외에 다른 실행자를 실행
@@ -63,5 +79,15 @@ mvc.perform(get("/주소값");
   -mvc.perform 결과 검증
   -응답 본문의 내용 검증
   -Controller 리턴값("hello") 검증
+*/
 
+/* p.76 <helloDto 테스트>
+Param
+  - API 테스트할 때 사용될 요청 파라미터 설정
+  - (단, 값은 무조건 String)
+  - 숫자/날짜 등 데이터 등록 시, 문자열로 변경(String.valueOf(데이터))
+
+jsonPath
+  - JSON 응답값을 필드별로 검증할 수 있는 메소드
+  - $.필드명 (ex : $.name, $.amount)
 */
