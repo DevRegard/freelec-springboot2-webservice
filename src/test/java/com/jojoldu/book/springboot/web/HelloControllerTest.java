@@ -21,7 +21,7 @@ public class HelloControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void helloIsReturn() throws Exception {
+    public void helloIsReturn() throws Exception { //문자열 반환 테스트
         String hello = "hello";
 
         mvc.perform(get("/hello"))
@@ -30,7 +30,7 @@ public class HelloControllerTest {
     }
 
     @Test
-    public void helloDtoIsReturn() throws Exception{
+    public void helloDtoIsReturn() throws Exception{ //Dto 반환 테스트
         String name = "hello";
         int amount = 1000;
 
@@ -43,6 +43,9 @@ public class HelloControllerTest {
                 .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
+
+
+
 /* p.61~63 <hello 테스트(기본)>
 @RunWith(SpringRunner.class)
   -스프링 부트 테스트 ~ JUnit 연결자
