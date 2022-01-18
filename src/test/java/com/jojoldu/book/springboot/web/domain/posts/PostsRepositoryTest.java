@@ -37,6 +37,7 @@ public class PostsRepositoryTest {
                 .content(content)
                 .author("utrTest@gmail.com")
                 .build());
+                /// Id 값이 없으므로, insert 수행 (실제 쿼리에는 id 값 포함된 insert)
         //when
         List<Posts> postsList = postsRepository.findAll(); //테이블, 모든 데이터 조회(findAll())
 
