@@ -30,7 +30,16 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+
+    //롬복 라이브러리
     compile('org.projectlombok:lombok')
+
+    //스프링 부트용 Spring Data Jpa 추상화 라이브러리
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+
+    //인메모리 관계형 데이터베이스(JPA 테스트, 로컬 환경)
+    compile('com.h2database:h2')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     /*testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
