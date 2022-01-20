@@ -15,6 +15,7 @@ import javax.transaction.Transactional;
 public class PostsService {
     private final PostsRepository postsRepository;
 
+    //등록 트랜잭션
     @Transactional
     public Long save(PostsSaveRequestDto requestDto){
         return postsRepository.save(requestDto.toEntity()).getId();
@@ -31,7 +32,7 @@ public class PostsService {
         return id;
     }
 
-    // 아이디 찾기 트랜잭션
+    //아이디 찾기 트랜잭션
     @Transactional
     public PostsResponseDto findById (Long id){
         Posts entity = postsRepository.findById(id).orElseThrow(
