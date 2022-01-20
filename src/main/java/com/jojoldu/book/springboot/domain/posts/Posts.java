@@ -13,7 +13,7 @@ import javax.persistence.GenerationType;
 @Getter //모든 필드 Getter 메소드 자동생성 (Setter 메소드는 생성 X)
 @NoArgsConstructor //기본 생성자 자동 추가 (= public Posts() {} )
 @Entity //테이블 링크 클래스(카멜케이스 ~> 언더스코어 네이밍 매칭)
-public class Posts {
+public class Posts { // 게시판 DB 클래스
 
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) //PK 생성규칙
@@ -32,5 +32,11 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    // 업데이트 쿼리 (?)
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 }
