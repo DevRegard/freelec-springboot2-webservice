@@ -1,6 +1,7 @@
 package com.jojoldu.book.springboot.web;
 
 import com.jojoldu.book.springboot.service.posts.PostsService;
+import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
 import com.jojoldu.book.springboot.web.dto.PostsSaveRequestDto;
 import com.jojoldu.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +32,8 @@ public class PostsApiController {
     
     // 게시판 아이디 찾기
     @GetMapping("/api/v1/posts/{id}")
-    public Long findById(@PathVariable Long id) {
-        return postsService.findById(id);
+    public PostsResponseDto findById(@PathVariable Long id) {
+        return postsService.findById(id); //findById
     }
 
 
