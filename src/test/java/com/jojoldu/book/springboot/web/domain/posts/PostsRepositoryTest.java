@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat; // 수동 import
@@ -25,6 +26,9 @@ public class PostsRepositoryTest {
         postsRepository.deleteAll();
     }
 
+    /**
+     *
+     */
     @Test
     public void boardSave_load(){
         //given
@@ -45,5 +49,31 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+    }
+
+    /**
+     * JPA Auding 테스트(자동 날짜 생성 및 수정)
+     */
+    @Test
+    public void BaseTimeEntity_Enrollment() {
+        //given
+        LocalDateTime now = LocalDateTime.of(2022, 1,21,21,36,20);
+        postsRepository.save(Posts.builder()
+                .title("동의보감")
+                .content("동의~ 어 보감")
+                .author("정약용")
+                .build()
+        );
+
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>>>>>> createDate = " + posts.getCreateDate() + "   modifiedDate = " + posts.getModifiedDate());
+        // >>>>>>>>> createDate = 2022-01-21T21:46:27.230   modifiedDate = 2022-01-21T21:46:27.230
+        assertThat(posts.getCreateDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
     }
 }
