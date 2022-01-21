@@ -40,10 +40,11 @@ public class PostsApiControllerTest {
     @After
     public void tearDown() throws Exception {
         postsRepository.deleteAll();
+        /** delete from posts where id=? */
     }
 
     /**
-     게시판 등록 테스트
+     * 게시판 등록 테스트
      */
     @Test
     public void posts_Enrollment() throws Exception {
@@ -78,7 +79,7 @@ public class PostsApiControllerTest {
     @Test
     public void posts_Update() throws Exception{
         //given
-        Posts savePosts = postsRepository.save(
+        Posts savePosts = postsRepository.save( //insert
                 Posts.builder()
                 .title("제목1 테스트")
                 .content("글 내용1, 글 내용2, 글 내용3")
@@ -95,13 +96,12 @@ public class PostsApiControllerTest {
                 .content(expectedContent)
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/posts" + updateId;
+        String url = "http://localhost:" + port + "/api/v1/posts/" + updateId; /** 오류 원인 : url 슬래시 부재 */
 
         HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
         //when
-        ResponseEntity<Long> responseEntity = restTemplate
-                .exchange(url, HttpMethod.PUT, requestEntity, Long.class);
+        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -110,5 +110,9 @@ public class PostsApiControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
+        /**
+         * Hibernate: insert into posts (author, content, title) values (?, ?, ?)
+         * Hibernate: update posts set author=?, content=?, title=? where id=?
+         */
     }
 }
