@@ -36,8 +36,9 @@ public class PostsApiControllerTest {
         postsRepository.deleteAll();
     }
 
+    //게시판 등록 테스트
     @Test
-    public void Posts_Enrollment() throws Exception {
+    public void posts_Enrollment() throws Exception {
         //given
         String title = "title";
         String content = "content";
@@ -48,7 +49,8 @@ public class PostsApiControllerTest {
                 .author("author") //Why?
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/posts";
+        String url = "http://localhost:" + port + "/api/v1/posts"; 
+        //static 가능 여부 [부] -> static port,url 서로 참조 불가
 
         //when
         ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
@@ -60,5 +62,15 @@ public class PostsApiControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(title);
         assertThat(all.get(0).getContent()).isEqualTo(content);
+    }
+    
+    //게시판 수정 테스트
+    @Test
+    public void posts_Update() throws Exception{
+        //given
+
+        //when
+
+        //then
     }
 }
