@@ -20,8 +20,11 @@ public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    /**
+     * 문자열 반환 테스트
+     */
     @Test
-    public void helloIsReturn() throws Exception { //문자열 반환 테스트
+    public void helloIsReturn() throws Exception {
         String hello = "hello";
 
         mvc.perform(get("/hello"))
@@ -29,8 +32,11 @@ public class HelloControllerTest {
                 .andExpect(content().string(hello));
     }
 
+    /**
+     * DTO 반환 테스트
+     */
     @Test
-    public void helloDtoIsReturn() throws Exception{ //Dto 반환 테스트
+    public void helloDtoIsReturn() throws Exception{
         String name = "hello";
         int amount = 1000;
 
@@ -44,9 +50,7 @@ public class HelloControllerTest {
     }
 }
 
-
-
-/* p.61~63 <hello 테스트(기본)>
+/** p.61~63 <hello 테스트(기본)>
 @RunWith(SpringRunner.class)
   -스프링 부트 테스트 ~ JUnit 연결자
   -테스트 진행) JUnit 내장된 실행자 외에 다른 실행자를 실행
@@ -84,7 +88,7 @@ mvc.perform(get("/주소값");
   -Controller 리턴값("hello") 검증
 */
 
-/* p.76 <helloDto 테스트>
+/** p.76 <helloDto 테스트>
 Param
   - API 테스트할 때 사용될 요청 파라미터 설정
   - (단, 값은 무조건 String)
