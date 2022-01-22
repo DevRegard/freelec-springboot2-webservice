@@ -35,7 +35,7 @@ public class Posts extends BaseTimeEntity { // 게시판 DB 클래스
         this.author = author;
     }
 
-    // 업데이트 쿼리 (?)
+    // 업데이트 쿼리
     public void update(String title, String content){
         this.title = title;
         this.content = content;
