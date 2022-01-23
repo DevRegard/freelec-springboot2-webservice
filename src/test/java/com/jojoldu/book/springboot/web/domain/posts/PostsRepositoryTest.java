@@ -27,7 +27,7 @@ public class PostsRepositoryTest {
     }
 
     /**
-     *
+     * 게시판 글 등록 테스트
      */
     @Test
     public void boardSave_load(){
