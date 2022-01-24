@@ -10,4 +10,8 @@ public class FirstClass {
 
         System.out.print(whoIs + ", Nice me you");
     }
+
+    public static void commitA(){
+        System.out.println("Commit A");
+    }
 }
