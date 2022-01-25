@@ -9,9 +9,13 @@ public class FirstClass {
         String whoIs = scan.nextLine();
 
         System.out.print(whoIs + ", Nice me you");
+        commitA();
+        commitB();
     }
 
     public static void commitA(){
         System.out.println("Commit A");
     }
+
+    public static void commitB() { System.out.println("Commit B"); }
 }
