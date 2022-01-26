@@ -40,6 +40,9 @@ dependencies {
     //인메모리 관계형 데이터베이스(JPA 테스트, 로컬 환경)
     compile('com.h2database:h2')
 
+    //머스테치
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     /*testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
