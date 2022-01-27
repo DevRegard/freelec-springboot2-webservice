@@ -10,4 +10,10 @@ public class IndexController {
     public String index(){
         return "index";
     }
+
+    // 글 등록
+    @GetMapping("/posts/save")
+    public String postsSave(){
+        return "posts-save";
+    }
 }
