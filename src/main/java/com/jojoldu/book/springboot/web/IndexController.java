@@ -16,4 +16,8 @@ public class IndexController {
     public String postsSave(){
         return "posts-save";
     }
+    
+    // 글 수정
+    
+    // 글 삭제
 }
