@@ -21,5 +21,5 @@ public class IndexController {
     public String postsUpdate() { return "posts-update"; }
     
     // 글 삭제
-    public String postsDelete() {return "posts-delete"; }
+    public String postsDelete() { return "posts-delete"; }
 }
