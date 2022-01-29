@@ -18,6 +18,8 @@ public class IndexController {
     }
     
     // 글 수정
+    public String postsUpdate() { return "posts-update"; }
     
     // 글 삭제
+    public String postsDelete() {return "posts-delete"; }
 }
