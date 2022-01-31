@@ -26,4 +26,12 @@ public class IndexController {
     // 글 삭제
     @DeleteMapping("/posts/delete")
     public String postsDelete() { return "posts-delete"; }
+
+    /** 22-01-31
+        1. 블럭체인 웹 프론트엔드 화면은?
+        2. NFT 웹 사이트를 출력하는 공간을 만든다면?
+        3. 현재 개발하는 웹 사이트로 NFT 를 생산하고, 판매할 수 있을까?
+        4. 1개월 안에 웹 사이트를 배포까지 할 수 있을까?
+        5. 사람들이 원하는 NFT / 내가 만들 수 있는 NFT
+    */
 }
