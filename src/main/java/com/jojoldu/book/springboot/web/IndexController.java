@@ -34,4 +34,6 @@ public class IndexController {
         4. 1개월 안에 웹 사이트를 배포까지 할 수 있을까?
         5. 사람들이 원하는 NFT / 내가 만들 수 있는 NFT
     */
+    
+    // 의미 없는 커밋
 }
