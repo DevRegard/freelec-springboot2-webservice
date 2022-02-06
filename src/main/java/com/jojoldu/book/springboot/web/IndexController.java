@@ -1,15 +1,23 @@
 package com.jojoldu.book.springboot.web;
 
+import com.jojoldu.book.springboot.service.posts.PostsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+@RequiredArgsConstructor // 어노테이션 추가 => 안하면 private final 변수 오류
 @Controller
 public class IndexController {
 
+    // 변수 추가(조회 기능 개발 후)
+    private final PostsService postsService;
+
     @GetMapping("/")
-    public String index(){
+    public String index(Model model){
+        model.addAttribute("posts", postsService.findAllDesc());
         return "index";
     }
 
@@ -34,10 +42,4 @@ public class IndexController {
         4. 1개월 안에 웹 사이트를 배포까지 할 수 있을까?
         5. 사람들이 원하는 NFT / 내가 만들 수 있는 NFT
     */
-    
-    // 의미 없는 커밋 One
-    // 의미 없는 커밋 Two
-    // 의미 없는 커밋 Three
-    // 의미 없는 커밋 Four
-    // 의미 없는 커밋 Five
 }
