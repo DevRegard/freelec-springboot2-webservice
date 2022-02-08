@@ -47,11 +47,22 @@ public class PostsService {
     }
 
     //조회 트랜잭션
-//    @Transactional(readOnly = true) // readOnly 오류 ~> 원인 : javax 경로 클래스 import
+    /** readOnly 오류
+     * 원인 : 다른 경로 클래스 사용 ( import javax.transaction.Transactional; )
+     */
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc(){
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    //삭제 트랜잭션
+    @Transactional
+    public void delete (Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+        postsRepository.delete(posts); // DELETE FROM posts WHERE id={id};
+    }
+
 }
