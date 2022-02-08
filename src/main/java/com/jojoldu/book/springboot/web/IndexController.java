@@ -30,7 +30,7 @@ public class IndexController {
     }
     
     // 글 수정
-    @PutMapping("/posts/update")
+    @GetMapping("/posts/update/{id}") // *Causes of 'Whitelabel Error Page'
     public String postsUpdate(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
@@ -39,6 +39,6 @@ public class IndexController {
     }
     
     // 글 삭제
-    @DeleteMapping("/posts/delete")
-    public String postsDelete() { return "posts-delete"; }
+//    @DeleteMapping("/posts/delete")
+//    public String postsDelete() { return "posts-delete"; }
 }
