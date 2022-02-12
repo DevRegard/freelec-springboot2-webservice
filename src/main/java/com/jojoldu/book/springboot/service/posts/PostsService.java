@@ -60,8 +60,8 @@ public class PostsService {
     //삭제 트랜잭션
     @Transactional
     public void delete (Long id) {
-        Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+        Posts posts = postsRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
         postsRepository.delete(posts); // DELETE FROM posts WHERE id={id};
     }
 
