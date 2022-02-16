@@ -12,6 +12,7 @@ public class FirstClass {
         commitA();
         commitB();
         commitC();
+        commitD();
     }
 
     public static void commitA(){
@@ -21,4 +22,6 @@ public class FirstClass {
     public static void commitB() { System.out.println("Commit B"); }
 
     public static void commitC() { System.out.println("Commit C"); }
+
+    public static void commitD() { System.out.println("Commit D"); }
 }
