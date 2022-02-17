@@ -13,6 +13,7 @@ public class FirstClass {
         commitB();
         commitC();
         commitD();
+        commitE();
     }
 
     public static void commitA(){
@@ -24,6 +25,8 @@ public class FirstClass {
     public static void commitC() { System.out.println("Commit C"); }
 
     public static void commitD() { System.out.println("Commit D"); }
+
+    public static void commitE() { System.out.println("Commit E"); }
 
 //  def commitE() : print('Commit E')
 }
