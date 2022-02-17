@@ -10,12 +10,8 @@ var main = {
         });
 
         $('#btn-delete').on('click', function () {
-            _this.delete_2();
-        });
-
-        /*$('#btn-delete').on('click', function () {
             _this.delete();
-        });*/
+        });
     },
     save : function () {
         var data = {
@@ -58,7 +54,7 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
-    delete_2 : function () {
+    delete : function () {
         var id = $('#id').val();
 
         $.ajax({
@@ -74,21 +70,6 @@ var main = {
         });
     }
 
-    /*delete : function () {
-        var id = $('#id').val();
-
-        $.ajax({
-            type: 'DELETE',
-            url: '/api/v1/posts/' + id,
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
-        }).done(function () {
-            alert('글이 삭제되었습니다.');
-            window.location.href = '/';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
-    }*/
 };
 
 main.init();
