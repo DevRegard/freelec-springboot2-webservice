@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-/** 어노테이션 설명 (@SpringBootApplication, SpringApplication.run)
+/** 어노테이션 설명
  @SpringBootApplication
  -자동 설정 : 스프링 부트, 스프링 Bean 읽기와 생성
  -해당 어노테이션이 있는 위치부터 설정 읽음 -> 프로젝트 최상단 유지
