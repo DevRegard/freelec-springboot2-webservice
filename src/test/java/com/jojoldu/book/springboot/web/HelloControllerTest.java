@@ -24,7 +24,7 @@ public class HelloControllerTest {
      * 문자열 반환 테스트
      */
     @Test
-    public void helloIsReturn() throws Exception {
+    public void hello_리턴된다() throws Exception { //helloIsReturn()
         String hello = "hello";
 
         mvc.perform(get("/hello"))
@@ -36,7 +36,7 @@ public class HelloControllerTest {
      * DTO 반환 테스트
      */
     @Test
-    public void helloDtoIsReturn() throws Exception{
+    public void helloDto_리턴된다() throws Exception{ //helloDtoIsReturn()
         String name = "hello";
         int amount = 1000;
 
