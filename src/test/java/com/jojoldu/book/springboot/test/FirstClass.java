@@ -1,3 +1,5 @@
+package com.jojoldu.book.springboot.test;
+
 import java.util.Scanner;
 
 public class FirstClass {
