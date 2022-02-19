@@ -1,4 +1,4 @@
-package com.jojoldu.book.springboot.web.test;
+package com.jojoldu.book.springboot.test;
 
 public class CommitBackTest {
     public static void main(String[] args){
