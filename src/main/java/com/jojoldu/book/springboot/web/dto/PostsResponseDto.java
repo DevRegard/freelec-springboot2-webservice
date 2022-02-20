@@ -17,7 +17,8 @@ public class PostsResponseDto {
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.author = entity.getAuthor();
-        
-        // 'Entity' 의 필드 중 일부만 사용 -> 생성자로 Entity 받아 필드 초기화
+
+        // 'Entity' 의 필드 중 일부만 사용
+        //  -> 생성자로 Entity 받아 필드 초기화
     }
 }
