@@ -35,7 +35,8 @@ public class IndexController {
 
         return "posts-update";
     }
-    
+
+    // * 주석 처리 했으나, 삭제 기능 작동함 -> 확인 필요 []
     // 글 삭제
 //    @DeleteMapping("/posts/delete")
 //    public String postsDelete() { return "posts-delete"; }
