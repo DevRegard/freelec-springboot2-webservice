@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class HelloController {
-    /** 어노테이션 설명 (@GetMapping, @RequestParam)
+    /** 어노테이션 설명
      @GetMapping
      - HTTP Method - Get 요청을 받을 수 있는 API
      - @RequestMapping(method = RequestMethod.GET) 역할
