@@ -21,7 +21,7 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String email;
 
     @Column
@@ -39,7 +39,7 @@ public class User extends BaseTimeEntity {
         this.role = role;
     }
 
-/*    public String getRoleKey(){
+    public String getRoleKey(){
         return this.role.getKey();
-    }*/
+    }
 }
