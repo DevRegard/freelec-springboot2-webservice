@@ -39,7 +39,7 @@ public class User extends BaseTimeEntity {
         this.role = role;
     }
 
-//    public String getRoleKey(){
-//        return this.role.getKey();
-//    }
+    public String getRoleKey(){
+        return this.role.getKey(); // 권한 키값 얻기
+    }
 }
