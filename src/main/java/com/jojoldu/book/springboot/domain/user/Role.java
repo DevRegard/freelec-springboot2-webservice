@@ -12,5 +12,5 @@ public enum Role {
     MANAGER("ROLE_MANAGER", "관리자");
 
     private final String key;   // * ROLE_ 필수
-    private final String title;
+    private final String title; // * Name of Key
 }
