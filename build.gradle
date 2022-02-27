@@ -31,19 +31,22 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
 
-    //롬복 라이브러리
+    //Lombok - 롬복 라이브러리
     compile('org.projectlombok:lombok')
 
-    //스프링 부트용 Spring Data Jpa 추상화 라이브러리
+    //JPA - 스프링 부트용 Spring Data Jpa 추상화 라이브러리
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
 
-    //인메모리 관계형 데이터베이스(JPA 테스트, 로컬 환경)
+    //H2 - 인메모리 관계형 데이터베이스(JPA 테스트, 로컬 환경)
     compile('com.h2database:h2')
 
-    //머스테치
+    //Mustache - 머스테치
     compile('org.springframework.boot:spring-boot-starter-mustache')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    //OAuth2 - 로그인 보안 관련
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 
     /*testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'*/
