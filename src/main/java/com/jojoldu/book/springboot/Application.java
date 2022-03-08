@@ -15,8 +15,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  */
 @EnableJpaAuditing //JPA Auditing 활성화
 @SpringBootApplication
-public class Application {
-    public static void main(String[] args) { // Web Tomcat 실행
+public class Application
+{
+    public static void main(String[] args)
+    { // Web Tomcat 실행
         SpringApplication.run(Application.class, args);
     }
 }
