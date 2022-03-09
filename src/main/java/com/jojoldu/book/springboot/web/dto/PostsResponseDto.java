@@ -4,7 +4,8 @@ import com.jojoldu.book.springboot.domain.posts.Posts;
 import lombok.Getter;
 
 @Getter
-public class PostsResponseDto {
+public class PostsResponseDto
+{
 
     private Long id;
     private String title;
@@ -12,7 +13,8 @@ public class PostsResponseDto {
     private String author;
 
     // 게시판 응답 DTO
-    public PostsResponseDto(Posts entity){
+    public PostsResponseDto(Posts entity)
+    {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();
