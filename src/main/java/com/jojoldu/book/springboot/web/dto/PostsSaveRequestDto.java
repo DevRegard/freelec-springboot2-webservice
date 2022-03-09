@@ -7,19 +7,22 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class PostsSaveRequestDto {
+public class PostsSaveRequestDto
+{ // final 변수 변경 검토[불변성 확보] ~> setter 구현하지 않으면 final 효과
     private String title;
     private String content;
     private String author;
 
     @Builder
-    public PostsSaveRequestDto(String title, String content, String author){
+    public PostsSaveRequestDto(String title, String content, String author)
+    {
         this.title = title;
         this.content = content;
         this.author = author;
     }
 
-    public Posts toEntity(){
+    public Posts toEntity()
+    {
         return Posts
                 .builder()
                 .title(title)
@@ -27,4 +30,6 @@ public class PostsSaveRequestDto {
                 .author(author)
                 .build();
     }
+
+    // Todo : [빌더 패턴]  https://mangkyu.tistory.com/163#recentEntries
 }

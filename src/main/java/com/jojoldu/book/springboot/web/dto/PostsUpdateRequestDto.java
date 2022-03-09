@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class PostsUpdateRequestDto { // 게시판 수정 요청 DTO
+public class PostsUpdateRequestDto
+{ // 게시판 수정 요청 DTO
     private String title;
     private String content;
 
