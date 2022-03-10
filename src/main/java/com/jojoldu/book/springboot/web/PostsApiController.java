@@ -19,22 +19,25 @@ public class PostsApiController {
         return postsService.save(requestDto);
     }
 
-    // 게시판 수정
+    // Method: 게시판 수정
     @PutMapping("/api/v1/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
         return postsService.update(id, requestDto);
     }
 
-    // 게시판 아이디 찾기
+    // Method: 게시판 아이디 찾기
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id); //findById
     }
 
-    // 게시판 삭제
+    // Method: 게시판 삭제
     @DeleteMapping("/api/v1/posts/{id}")
     public Long delete(@PathVariable Long id) {
         postsService.delete(id);
         return id;
     }
+
+    // @RequestBody:
+    // @PathVariable:
 }
