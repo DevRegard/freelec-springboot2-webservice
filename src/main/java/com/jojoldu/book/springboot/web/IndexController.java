@@ -20,7 +20,8 @@ public class IndexController {
     private final HttpSession httpSession; //mk- userName 모델에 추가 위함
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model)
+    {
         model.addAttribute("posts", postsService.findAllDesc());
         SessionUser user = (SessionUser) httpSession.getAttribute("user"); //mk- 로그인 성공 시 세션에 저장
         if (user != null) //mk- 세션에 저장된 값 있으면 'model -> userName' 등록
@@ -31,13 +32,15 @@ public class IndexController {
 
     // 글 등록
     @GetMapping("/posts/save")
-    public String postsSave(){
+    public String postsSave()
+    {
         return "posts-save";
     }
     
     // 글 수정
     @GetMapping("/posts/update/{id}") // *Causes of 'Whitelabel Error Page'
-    public String postsUpdate(@PathVariable Long id, Model model) {
+    public String postsUpdate(@PathVariable Long id, Model model)
+    {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
 
