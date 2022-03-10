@@ -16,5 +16,18 @@ SINCE: 22. 03/08
   - 로그인 성공 여부따라 세션 저장
 
 
-* 테스트: [웹사이트 로그인 버튼 작동]
-  - issue 1) 로그인 버튼 클릭 후, 간헐적 화이트라벨
+* TEST: [웹사이트 로그인 버튼 작동]
+  - issue 1) 로그인 버튼 클릭 후, 간헐적 화이트라벨[해결]
+  - 정상 로그인 확인(H2 확인)
+  - 권한 변경(Guest -> User) 후, 글쓰기 정상
+  
+
+* LoginUser
+  - 어노테이션 생성
+
+
+* LoginUserArgumentResolver
+
+* WebConfig
+
+* IndexController
