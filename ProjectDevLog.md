@@ -40,6 +40,7 @@ SINCE: 22. 03/08
   - WebMvcConfigurer 에 추가
 
 * IndexController [+]
+  - @LoginUser 개선 및 리팩토링
 
 ### 22. 03/
 * build.gradle [+]
