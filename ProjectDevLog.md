@@ -29,9 +29,19 @@ SINCE: 22. 03/08
 * LoginUserArgumentResolver
   - {after}
 
-### 22. 03/
+### 22. 03/11
+
+* 패키지 구조 변경
+  - [config/auth] SecurityConfig 
+  -> [config] SecurityConfig 
+  
 * WebConfig
+  - LoginUserArgumentResolver 스프링 인식
+  - WebMvcConfigurer 에 추가
+
 * IndexController [+]
+
+### 22. 03/
 * build.gradle [+]
 * application-oauth.properties [+]
 * OAuthAttributes [+]
