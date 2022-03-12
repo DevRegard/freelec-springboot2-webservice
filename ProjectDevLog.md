@@ -24,7 +24,7 @@ SINCE: 22. 03/08
 
 * @LoginUser
   - 어노테이션 생성
-
+  
 
 * LoginUserArgumentResolver
   - {after}
@@ -42,9 +42,13 @@ SINCE: 22. 03/08
 * IndexController [+]
   - @LoginUser 개선 및 리팩토링
 
-### 22. 03/
+### 22. 03/12
 * build.gradle [+]
-* application-oauth.properties [+]
+  - 'spring-session-jdbc' 등록
+  
+* application.properties [+]
+  - 세션 저장소 -> jdbc 선택 설정 코드 추가
+  
 * OAuthAttributes [+]
 * index.mustache [+]
 * [TEST] 웹사이트 네이버 로그인
