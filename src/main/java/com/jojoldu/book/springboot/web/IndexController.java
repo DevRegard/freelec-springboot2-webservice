@@ -12,33 +12,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 
-@RequiredArgsConstructor // 어노테이션 추가 => 안하면 private final 변수 오류
+@RequiredArgsConstructor // mk) 안하면 private final 변수 오류
 @Controller
 public class IndexController {
 
     // 변수 추가(조회 기능 개발 후)
     private final PostsService postsService;
-//    private final HttpSession httpSession; //mk- userName 모델에 추가 위함
+//    private final HttpSession httpSession; //mk) userName 모델에 추가 위함
 
+    // MD) 시작 페이지
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user)
     {
         model.addAttribute("posts", postsService.findAllDesc());
-//        SessionUser user = (SessionUser) httpSession.getAttribute("user"); //mk- 로그인 성공 시 세션에 저장
-        if (user != null) //mk- 세션에 저장된 값 있으면 'model -> userName' 등록
-             model.addAttribute("userName", user.getName());
-        //mk- 없으면(model 값 없음) -> 로그인 버튼 보이도록 함.
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user"); //mk) 로그인 성공 시 세션에 저장
+        if (user != null) { // mk) 세션에 저장된 값이 있으면?
+            // mk) 'model <- userName' 등록
+            model.addAttribute("userName", user.getName());
+            // mk) 없으면 '로그인 버튼 보이도록 구현 (model == null)
+        }
         return "index";
     }
 
-    // 글 등록
+    // MD) 글 등록
     @GetMapping("/posts/save")
     public String postsSave()
     {
         return "posts-save";
     }
     
-    // 글 수정
+    // MD) 글 수정
     @GetMapping("/posts/update/{id}") // *Causes of 'Whitelabel Error Page'
     public String postsUpdate(@PathVariable Long id, Model model)
     {
@@ -48,8 +51,7 @@ public class IndexController {
         return "posts-update";
     }
 
-    // * 주석 처리 했으나, 삭제 기능 작동함 -> 확인 필요 []
-    // 글 삭제
-//    @DeleteMapping("/posts/delete")
-//    public String postsDelete() { return "posts-delete"; }
+/*     글 삭제
+    @DeleteMapping("/posts/delete")
+    public String postsDelete() { return "posts-delete"; }*/
 }
