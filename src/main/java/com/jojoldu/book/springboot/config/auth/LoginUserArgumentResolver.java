@@ -17,21 +17,26 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver
 {
     private final HttpSession httpSession;
 
+    // MD) 컨트롤러 메서드 파라미터 지원 여부 판단
     @Override
-    public boolean supportsParameter(MethodParameter parameter) //mk: 컨트롤러 메서드의 특정 파라미터 지원 여부 판단
+    public boolean supportsParameter(MethodParameter parameter)
     {
         boolean isLoginUserAnnotation = parameter.getParameterAnnotation(LoginUser.class) != null;
         boolean isUserClass = SessionUser.class.equals(parameter.getParameterType());
-        return isLoginUserAnnotation && isUserClass; //mk: 파라미터에 @LoginUser && 파라미터 타입이 SessionUser.class
+
+        // mk) 파라미터 == '@loginUser' && 파라미터 타입 == SessionUser.class
+        return isLoginUserAnnotation && isUserClass;
     }
 
+    // MD) 파라미터로 전달할 객체 생성
     @Override
-    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-                                  NativeWebRequest webRequest, WebDataBinderFactory binderFactory)
+    public Object resolveArgument(MethodParameter parameter,
+                                  ModelAndViewContainer mavContainer,
+                                  NativeWebRequest webRequest,
+                                  WebDataBinderFactory binderFactory)
             throws Exception
     {
+        //mk) 세션에서 객체 가져오기
         return httpSession.getAttribute("user");
-        //mk: 파라미터에 전달할 객체 생성
-        //mk: 세션에서 객체 가져옴
     }
 }
