@@ -1,7 +1,9 @@
-buildscript {
+buildscript
+{
     ext {
         springBootVersion = '2.1.7.RELEASE'
     }
+
     repositories {
         mavenCentral()
         jcenter()
@@ -16,45 +18,27 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-/*plugins {
-    id 'java'
-}*/
-
 group 'com.jojoldu.book'
-version '1.0-SNAPSHOT'
+version '1.0-SNAPSHOT' // TODO) 스냅샷: 자동 날짜 포맷
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter() // issue) 다시 추가
 }
 
-dependencies {
+dependencies
+{
+    // mk) main/*
     compile('org.springframework.boot:spring-boot-starter-web')
-
-    //Lombok - 롬복 라이브러리
     compile('org.projectlombok:lombok')
-
-    //JPA - 스프링 부트용 Spring Data Jpa 추상화 라이브러리
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-
-    //H2 - 인메모리 관계형 데이터베이스(JPA 테스트, 로컬 환경)
-    compile('com.h2database:h2')
-
-    //Mustache - 머스테치
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') // 스프링 부트용 Spring Data Jpa 추상화 라이브러리
+    compile('com.h2database:h2')                                     // 인메모리 관계형 데이터베이스(JPA 테스트용, 로컬 환경)
     compile('org.springframework.boot:spring-boot-starter-mustache')
-
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-
-    //OAuth2 - 로그인 보안 관련
-    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
-
-    /*testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'*/
-
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client') // 스프링 보안
     compile('org.springframework.session:spring-session-jdbc')
 
+    // mk) test/*
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile("org.springframework.security:spring-security-test")
 }
-/*
-test {
-    useJUnitPlatform()
-}*/
