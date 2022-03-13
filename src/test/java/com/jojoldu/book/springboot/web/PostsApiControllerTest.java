@@ -15,6 +15,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -26,7 +27,8 @@ import static org.assertj.core.api.Assertions.assertThat; //수동 삽입
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) //JPA 기능까지 테스트 + 랜덤 포트 실행
-public class PostsApiControllerTest {
+public class PostsApiControllerTest
+{
 
     @LocalServerPort
     private int port;
@@ -38,33 +40,35 @@ public class PostsApiControllerTest {
     private PostsRepository postsRepository;
 
     @After
-    public void tearDown() throws Exception {
-        postsRepository.deleteAll();
-        /** delete from posts where id=? */
+    public void tearDown() throws Exception
+    {
+        postsRepository.deleteAll(); // mk) DELETE FROM posts WHERE id=?
     }
 
-    /**
-     * 게시판 등록 테스트
-     */
+    // MD: 게시판 등록 테스트
     @Test
-    public void posts_Enrollment() throws Exception {
-        //given
+    @WithMockUser(roles = "USER") // mk) 모의(가짜) 사용자
+    public void posts_Enrollment() throws Exception
+    {
+        // mk) Given
         String title = "title";
         String content = "content";
-        PostsSaveRequestDto requestDto = PostsSaveRequestDto
-                .builder()
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
                 .title(title)
                 .content(content)
-                .author("author") //Why?
+                .author("author") //Why? 제목과 내용은 별도 변수로 지정, 저자는 직접 입력
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts"; 
         //static 가능 여부 [부] -> static port,url 서로 참조 불가
+        // TODO) 공통 분모 'static' 변수 진행: '문자열+Int+문자열' 패턴 변수화 테스트 검토
+            // - 전체 테스트 불가 가능성
+            // - 결합도 문제
 
-        //when
+        // mk) When
         ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
 
-        //then
+        // mk) Then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
@@ -73,13 +77,13 @@ public class PostsApiControllerTest {
         assertThat(all.get(0).getContent()).isEqualTo(content);
     }
 
-    /**
-     게시판 수정 테스트
-     */
+    // MD: 게시판 수정 테스트
     @Test
-    public void posts_Update() throws Exception{
-        //given
-        Posts savePosts = postsRepository.save( //insert
+    @WithMockUser(roles = "USER") // mk) roles 권한 설정 가능
+    public void posts_Update() throws Exception
+    {
+        // mk) Given
+        Posts savePosts = postsRepository.save(
                 Posts.builder()
                 .title("제목1 테스트")
                 .content("글 내용1, 글 내용2, 글 내용3")
@@ -100,19 +104,21 @@ public class PostsApiControllerTest {
 
         HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
-        //when
+        // mk) When
         ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
 
-        //then
+        // mk) Then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
-        List<Posts> all = postsRepository.findAll();
+        List<Posts> all = postsRepository.findAll(); // mk) SELECT (*) FROM
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
-        /**
-         * Hibernate: insert into posts (author, content, title) values (?, ?, ?)
-         * Hibernate: update posts set author=?, content=?, title=? where id=?
-         */
     }
+    /**
+     * mk) posts_Enrollment()
+     * Hibernate: insert into posts (author, content, title) values (?, ?, ?)
+     * mk) posts_Update() -save()
+     * Hibernate: update posts set author=?, content=?, title=? where id=?
+     */
 }
