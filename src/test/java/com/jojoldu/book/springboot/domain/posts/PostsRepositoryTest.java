@@ -26,12 +26,10 @@ public class PostsRepositoryTest {
         postsRepository.deleteAll();
     }
 
-    /**
-     * 게시판 글 등록 테스트
-     */
+    // MD) 게시판 글 등록 테스트
     @Test
     public void boardSave_load(){
-        //given
+        // mk) Given
         String title = "테스트 게시글";
         String content = "테스트 본문";
 
@@ -42,21 +40,19 @@ public class PostsRepositoryTest {
                 .author("utrTest@gmail.com")
                 .build());
                 /// Id 값이 없으므로, insert 수행 (실제 쿼리에는 id 값 포함된 insert)
-        //when
+        // mk) When
         List<Posts> postsList = postsRepository.findAll(); //테이블, 모든 데이터 조회(findAll())
 
-        //then
+        // mk) Then
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
     }
 
-    /**
-     * JPA Auding 테스트(자동 날짜 생성 및 수정)
-     */
+    // MD) JPA Auding 테스트 (자동 날짜 생성 및 수정)
     @Test
     public void BaseTimeEntity_Enrollment() {
-        //given
+        // mk) Given
         LocalDateTime now = LocalDateTime.of(2022, 1,21,21,36,20);
         postsRepository.save(Posts.builder()
                 .title("동의보감")
@@ -65,10 +61,10 @@ public class PostsRepositoryTest {
                 .build()
         );
 
-        //when
+        // mk) When
         List<Posts> postsList = postsRepository.findAll();
 
-        //then
+        // mk) Then
         Posts posts = postsList.get(0);
 
         System.out.println(">>>>>>>>> createDate = " + posts.getCreateDate() + "   modifiedDate = " + posts.getModifiedDate());
