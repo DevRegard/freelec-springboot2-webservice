@@ -74,10 +74,10 @@ SINCE: 22. 03/08
   - 방법: [Tasks -> verification -> test]
   - [문제1] CustomOAuth2UserService 찾을 수 없음
     - 원인: 소셜 로그인 설정값 없음 (= test 폴더 설정 없음)
-    - 해결: 가짜 설정값 등록
+    - 해결: 가짜 설정값 등록(test/application.properties)
   - [문제2] 302 Status Code
     - 원인: 인증되지 않은 사용자의 요청은 이동됨
-    - 해결: 임의로 인증된 사용자 추가
+    - 해결: 임의로 인증된 사용자 추가(PostsApiControllerTest)
 
 * test/~/ application.properties 
   - 가짜 설정값 등록
@@ -91,21 +91,26 @@ SINCE: 22. 03/08
   - 코드 개선: 커스텀 주석 적용, 가독성 향상
   
 
-### 22. 03/13
-* PostsApiControllerTest - + MockMvc 테스트 호환
+### 22. 03/15
+* PostsApiControllerTest
+  - MockMvc 테스트 호환
+  - MockMvc 관련 import, 테스트 메서드 리팩토링
+
+### 22. 03/16
+* [TEST] 전체 테스트
+ - [문제3] @WebMvcTest - CustomOAuthUserService 찾을 수 없음
+   - 원인:
+   - 해결:
+
 * HelloControllerTest [+] - 스캔 대상 변경 및 제거
 * Application[-] - @EnableJpaAuditing 제거
 * JpaConfig - JPA Audition 활성화
 
-
-* < AWS EC2 >
+* AWS EC2
+* AWS RDS
+* EC2 서버 프로젝트 배포
+* Travis CI 배포 자동화
+* 무중단 배포
 
 * 커스텀 주석: 클래스, 변수 추가
-< After >
-1) AWS EC2
-2) AWS RDS
-3) EC2 서버 프로젝트 배포
-4) Travis CI 배포 자동화
-5) 무중단 배포
-
 
