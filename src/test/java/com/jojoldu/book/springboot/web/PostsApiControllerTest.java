@@ -102,7 +102,7 @@ public class PostsApiControllerTest
 
         String url = "http://localhost:" + port + "/api/v1/posts/" + updateId; /** 오류 원인 : url 슬래시 부재 */
 
-        HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto); //
+        HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto); // mk) HttpEntity() :
 
         // mk) When
         ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
