@@ -88,7 +88,7 @@ public class PostsApiControllerTest
              */
 
         // mk] When
-        mvc.perform(post(url)
+        mvc.perform(post(url)   // mk] 생성된 MockMvc 통해 API 테스트
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
