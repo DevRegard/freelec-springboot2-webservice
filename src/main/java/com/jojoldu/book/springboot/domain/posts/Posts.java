@@ -30,14 +30,16 @@ public class Posts extends BaseTimeEntity { // 게시판 DB 클래스
 
     // MD) 테이블 posts 생성자
     @Builder //빌더 패턴 클래스 생성(생성자에 포함된 필드만 포함)
-    public Posts(String title, String content, String author){
+    public Posts(String title, String content, String author)
+    {
         this.title = title;
         this.content = content;
         this.author = author;
     }
 
     // MD) 업데이트 쿼리
-    public void update(String title, String content){
+    public void update(String title, String content)
+    {
         this.title = title;
         this.content = content;
     }
