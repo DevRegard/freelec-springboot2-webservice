@@ -1,9 +1,12 @@
 package com.jojoldu.book.springboot.web;
 
+import com.jojoldu.book.springboot.config.SecurityConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -14,17 +17,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = HelloController.class)
-public class HelloControllerTest {
+@WebMvcTest(controllers = HelloController.class,
+        excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
+        }
+)
+public class HelloControllerTest
+{
 
     @Autowired
     private MockMvc mvc;
 
-    /**
-     * 문자열 반환 테스트
-     */
+    // MD] 문자열 반환 테스트
     @Test
-    public void hello_리턴된다() throws Exception { //helloIsReturn()
+    public void hello_리턴된다() throws Exception
+    {
         String hello = "hello";
 
         mvc.perform(get("/hello"))
@@ -32,11 +39,10 @@ public class HelloControllerTest {
                 .andExpect(content().string(hello));
     }
 
-    /**
-     * DTO 반환 테스트
-     */
+    // MD] DTO 반환 테스트
     @Test
-    public void helloDto_리턴된다() throws Exception{ //helloDtoIsReturn()
+    public void helloDto_리턴된다() throws Exception
+    {
         String name = "hello";
         int amount = 1000;
 
