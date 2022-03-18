@@ -20,14 +20,14 @@ public class PostsService
 {
     private final PostsRepository postsRepository;
 
-    //등록 트랜잭션
+    // MD] 등록 트랜잭션
     @Transactional
     public Long save(PostsSaveRequestDto requestDto)
     {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
-    //업데이트 트랜잭션
+    // MD] 업데이트 트랜잭션
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto)
     {
@@ -39,7 +39,7 @@ public class PostsService
         return id;
     }
 
-    //아이디 찾기 트랜잭션
+    // MD] 아이디 찾기 트랜잭션
     @Transactional
     public PostsResponseDto findById (Long id)
     {
@@ -50,10 +50,10 @@ public class PostsService
         return new PostsResponseDto(entity);
     }
 
-    //조회 트랜잭션
     /** readOnly 오류
      * 원인 : 다른 경로 클래스 사용 ( import javax.transaction.Transactional; )
      */
+    // MD] 조회 트랜잭션
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc()
     {
@@ -62,7 +62,7 @@ public class PostsService
                 .collect(Collectors.toList());
     }
 
-    //삭제 트랜잭션
+    // MD] 삭제 트랜잭션
     @Transactional
     public void delete (Long id)
     {
