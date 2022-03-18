@@ -16,18 +16,21 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class PostsService {
+public class PostsService
+{
     private final PostsRepository postsRepository;
 
     //등록 트랜잭션
     @Transactional
-    public Long save(PostsSaveRequestDto requestDto){
+    public Long save(PostsSaveRequestDto requestDto)
+    {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
     //업데이트 트랜잭션
     @Transactional
-    public Long update(Long id, PostsUpdateRequestDto requestDto){
+    public Long update(Long id, PostsUpdateRequestDto requestDto)
+    {
         Posts posts = postsRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시글이 없습니다. id =" + id)
         );
@@ -38,7 +41,8 @@ public class PostsService {
 
     //아이디 찾기 트랜잭션
     @Transactional
-    public PostsResponseDto findById (Long id){
+    public PostsResponseDto findById (Long id)
+    {
         Posts entity = postsRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시글이 없습니다. id =" + id)
         );
@@ -51,7 +55,8 @@ public class PostsService {
      * 원인 : 다른 경로 클래스 사용 ( import javax.transaction.Transactional; )
      */
     @Transactional(readOnly = true)
-    public List<PostsListResponseDto> findAllDesc(){
+    public List<PostsListResponseDto> findAllDesc()
+    {
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
@@ -59,7 +64,8 @@ public class PostsService {
 
     //삭제 트랜잭션
     @Transactional
-    public void delete (Long id) {
+    public void delete (Long id)
+    {
         Posts posts = postsRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
         postsRepository.delete(posts); // DELETE FROM posts WHERE id={id};
