@@ -51,6 +51,8 @@ public class HelloControllerTest
                         .param("name", name)
                         .param("amount", String.valueOf(amount)))
                 .andExpect(status().isOk())
+                // ISSUE: https://kr.godaddy.com/help/common-web-page-errors-2505 - 401 오류 메세지
+                // TEST: 사용자 이름과 암호 엑세스 테스트 필요
                 .andExpect(jsonPath("$.name", is(name)))
                 .andExpect(jsonPath("$.amount", is(amount)));
     }
