@@ -27,6 +27,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     private final HttpSession httpSession;
 
 
+    /**
+     *
+     * @param userRequest
+     * @return
+     * @throws OAuth2AuthenticationException
+     */
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException
     {
@@ -53,8 +59,18 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
+
+        /*
+        What's mean 'Collections.singleton' ?
+         -
+         */
     }
 
+
+    /**
+     * @param attributes
+     * @return
+     */
     private User saveOrUpdate(OAuthAttributes attributes)
     {
         User user = userRepository.findByEmail(attributes.getEmail())
