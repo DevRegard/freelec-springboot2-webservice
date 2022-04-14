@@ -39,17 +39,23 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuth2UserService delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
-        // 회원가입 아이디
+        // 회원가입 아이디:
         String registrationId
-                = userRequest.getClientRegistration().getRegistrationId();
+                = userRequest.getClientRegistration()
+                .getRegistrationId();
 
-        // 유저 이름
+        // 유저 이름(속성 이름):
         String userNameAttributeName
-                = userRequest.getClientRegistration().getProviderDetails()
-                .getUserInfoEndpoint().getUserNameAttributeName();
+                = userRequest.getClientRegistration()
+                .getProviderDetails()
+                .getUserInfoEndpoint()
+                .getUserNameAttributeName();
 
         // 보안 속성
-        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
+        OAuthAttributes attributes
+                = OAuthAttributes.of(registrationId,
+                                     userNameAttributeName,
+                                     oAuth2User.getAttributes());
 
         // 유저
         User user = saveOrUpdate(attributes);
@@ -61,7 +67,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 attributes.getNameAttributeKey());
 
         /*
-        What's mean 'Collections.singleton' ?
+        What's mean
+         1. Collections.singleton ?
+         2. [Class].of
 
         Why used to 'Collections.singleton' -> return for Set
          - https://stackoverflow.com/questions/31599467/what-is-the-benefit-for-collections-singleton-to-return-a-set-instead-of-a-col
