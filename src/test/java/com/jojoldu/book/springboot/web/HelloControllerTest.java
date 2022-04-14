@@ -36,6 +36,8 @@ public class HelloControllerTest
 
         mvc.perform(get("/hello"))
                 .andExpect(status().isOk())
+                // ISSUE: https://kr.godaddy.com/help/common-web-page-errors-2505 - 401 오류 메세지
+                // https://stackoverflow.com/questions/60864872/im-getting-a-java-lang-assertionerror-status-expected200-but-was401-when
                 .andExpect(content().string(hello));
     }
 
