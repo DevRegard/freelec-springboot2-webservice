@@ -28,7 +28,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 
     /**
-     *
+     * 보안 2 유저 (?)
      * @param userRequest
      * @return
      * @throws OAuth2AuthenticationException
