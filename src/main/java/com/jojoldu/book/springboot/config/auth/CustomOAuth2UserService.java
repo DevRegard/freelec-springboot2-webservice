@@ -69,7 +69,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         /*
         What's mean
          1. Collections.singleton ?
-         2. [Class].of
+         2. OAuthAttributes.of
 
         Why used to 'Collections.singleton' -> return for Set
          - https://stackoverflow.com/questions/31599467/what-is-the-benefit-for-collections-singleton-to-return-a-set-instead-of-a-col
