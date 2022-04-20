@@ -17,8 +17,11 @@ public class OAuthAttributes
     private String picture;
 
     @Builder
-    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey,
-                           String name, String email, String picture)
+    public OAuthAttributes(Map<String, Object> attributes,
+                           String nameAttributeKey,
+                           String name,
+                           String email,
+                           String picture)
     {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
@@ -27,7 +30,7 @@ public class OAuthAttributes
         this.picture = picture;
     }
 
-    // Method: ~인지 판단하는 코드 (구글, 네이버)
+    // Method: (구글, 네이버) 인지 판단
     public static OAuthAttributes of(String registrationId,
                                      String userNameAttributeName,
                                      Map<String, Object> attributes)
